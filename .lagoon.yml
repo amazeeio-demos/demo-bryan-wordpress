@@ -20,3 +20,15 @@ environments:
         schedule: "H * * * *"
         command: wp cron event run --due-now --path=`/app/web/`
         service: cli
+
+lagoon-sync:
+  mariadb:
+    config:
+      hostname: "${MARIADB_HOST:-mariadb}"
+      username: "${MARIADB_USERNAME:-lagoon}"
+      password: "${MARIADB_PASSWORD:-lagoon}"
+      port: "${MARIADB_PORT:-3306}"
+      database: "${MARIADB_DATABASE:-lagoon}"
+  files:
+    config:
+      sync-directory: "/app/storage"
